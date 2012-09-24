@@ -16,7 +16,7 @@ describe ResponsivePicture::ViewHelpers, :type => :helper  do
   end
   
   it  "matches the complete html with an alt tag" do
-    helper.picture_tag('/images/cat.jpg', alt: "Kitty!").should eq html.gsub("Cat", "Kitty!") 
+    helper.picture_tag('/images/cat.jpg', :alt => "Kitty!").should eq html.gsub("Cat", "Kitty!") 
   end
   
   describe "split image path" do
@@ -56,7 +56,7 @@ describe ResponsivePicture::ViewHelpers, :type => :helper  do
     end
     
     it "adds a class to the img tag" do
-      helper.add_default_source_and_image('test', 'small', 'jpg', {class: "span2"}).
+      helper.add_default_source_and_image('test', 'small', 'jpg', {:class => "span2"}).
       should eq "<source srcset='/images/test-small.jpg 1x, /images/test-small@2x.jpg 2x' /><img alt=\"Test\" class=\"span2\" src=\"/images/test-small.jpg\" />"
     end
     

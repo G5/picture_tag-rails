@@ -2,13 +2,13 @@ module ResponsivePicture
   module ViewHelpers
     def picture_tag(image_path, options={})
       filename, extension = split_image_path(image_path)
-      sizes = options.delete(:sizes) || default_sizes
+      sizes = options.delete(:sizes) || default_sizes.sort_by {|k,v| k.to_s }
       html = "<picture>"
     
       sizes.each do |size, media_query| 
         html << create_source(filename, size, extension, media_query)
       end
-      html << add_default_source_and_image(filename, sizes.keys.last, extension, options)
+      html << add_default_source_and_image(filename, sizes.last.first, extension, options)
     
       html << "</picture>"
       html
@@ -34,10 +34,10 @@ module ResponsivePicture
   
     def default_sizes
       {
-        large:  "(min-width: 1600px)", 
-        medium: "(min-width: 1000px)", 
-        small:  "(min-width: 768px)", 
-        tiny:   "(min-width: 480px)"
+        :large  => "(min-width: 1600px)", 
+        :medium => "(min-width: 1000px)", 
+        :small  => "(min-width: 768px)", 
+        :tiny   => "(min-width: 480px)"
       }
     end
   
