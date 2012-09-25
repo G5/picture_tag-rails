@@ -5,6 +5,7 @@ A Rails view helper extension to generate the proposed HTML5 picture tag markup.
 ## Installation
 
 Add this line to your application's Gemfile:
+
 `gem 'picture_tag-rails'`
 
 Or install it yourself as:
