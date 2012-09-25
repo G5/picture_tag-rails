@@ -14,6 +14,8 @@ Or install it yourself as:
 
 ## Usage
 
+`require 'picture_tag'`
+
 ```erb
 <%= picture_tag(image_path, options) %>
 ```  
