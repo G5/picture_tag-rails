@@ -1,12 +1,12 @@
-# Responsive::Picture
+# PictureTag
 
-TODO: Write a gem description
+A ViewHelper picture_tag extension to give a image_tag like helper for the proposed HTML5 picture element
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'responsive_picture'
+    gem 'picture_tag'
 
 And then execute:
 
@@ -14,16 +14,33 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install responsive_picture
+    $ gem install picture_tag
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+picture_tag(image_path, options)
+```  
 
-## Contributing
+```ruby
+picture_tag('cat.jpg', alt: "Kitty cat!")
+```  
+produces
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```html
+<picture>
+<source media='(min-width: 1600px)' srcset='/images/cat-large.jpg 1x, /images/cat-large@2x.jpg 2x' />
+<source media='(min-width: 1000px)' srcset='/images/cat-medium.jpg 1x, /images/cat-medium@2x.jpg 2x' />
+<source media='(min-width: 768px)' srcset='/images/cat-small.jpg 1x, /images/cat-small@2x.jpg 2x' />
+<source media='(min-width: 480px)' srcset='/images/cat-tiny.jpg 1x, /images/cat-tiny@2x.jpg 2x' />
+<source srcset='/images/cat-tiny.jpg 1x, /images/cat-tiny@2x.jpg 2x' />
+<img alt=\"Kitty cat!\" src=\"/images/cat-tiny.jpg\" />
+</picture>
+```
+
+## Options
+To exclude <source> attributes above a max width:
+  
+```ruby
+picture_tag(image_path, max_width: 600)
+```

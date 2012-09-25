@@ -29,4 +29,4 @@ require 'rspec/rails'
 RSpec.configure do |config|
 end
 
-require 'responsive_picture'
+require 'picture_tag'
