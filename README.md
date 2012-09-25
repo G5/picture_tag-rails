@@ -1,6 +1,6 @@
 # picture_tag
 
-A ViewHelper picture_tag extension to give a image_tag like helper for the proposed HTML5 picture element
+A Rails view helper extension to generate the proposed HTML5 picture tag markup.
 
 ## Installation
 
