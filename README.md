@@ -43,7 +43,7 @@ Paperclip options for default media queries and sizes
 ```ruby
 has_attached_file :image, {
   styles: { 
-    tiny:   "320", 
+    tiny:   "320x", 
     small:  "480x", 
     medium: "768x", 
     large:  "1000x", 
