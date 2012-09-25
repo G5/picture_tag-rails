@@ -5,22 +5,21 @@ A ViewHelper picture_tag extension to give a image_tag like helper for the propo
 ## Installation
 
 Add this line to your application's Gemfile:
-
-    gem 'picture_tag-rails'
+`gem 'picture_tag-rails'`
 
 Or install it yourself as:
 
-    $ gem install picture_tag-rails
+`gem install picture_tag-rails`
 
 ## Usage
 
-```ruby
-picture_tag(image_path, options)
+```erb
+<%= picture_tag(image_path, options) %>
 ```  
 
 With default sizes and media queries
-```ruby
-picture_tag('cat.jpg', alt: "Kitty cat!")
+```erb
+<%= picture_tag('cat.jpg', alt: "Kitty cat!") %>
 ```  
 
 produces
@@ -39,11 +38,11 @@ produces
 ## Options
 
 To exclude <source> attributes above a max width:
-```ruby
-picture_tag(image_path, max_width: "600px")
+```erb
+<%= picture_tag(image_path, max_width: "600px") %>
 ```
 
 To override the default media queries and names:
-```ruby
-picture_tag(image_path, sizes: {itty_bitty: "(min-width: 10px)"})
+```erb
+<%= picture_tag(image_path, sizes: {itty_bitty: "(min-width: 10px)"}) %>
 ```
