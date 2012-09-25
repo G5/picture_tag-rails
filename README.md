@@ -20,7 +20,7 @@ Or install it yourself as:
 
 With default sizes and media queries
 ```erb
-<%= picture_tag('cat.jpg', alt: "Kitty cat!") %>
+<%= picture_tag('/images/cat.jpg', alt: "Kitty cat!") %>
 ```  
 
 produces
@@ -67,6 +67,8 @@ To override the default media queries and names:
 ```erb
 <%= picture_tag(image_path, sizes: {itty_bitty: "(min-width: 10px)"}) %>
 ```
+
+All `image_tag` options are valid for `picture_tag`. See [image_tag Docs](http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html)
 
 ## Todo
 
