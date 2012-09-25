@@ -2,7 +2,7 @@ require 'spec_helper'
 describe PictureTag::ViewHelpers, :type => :helper  do
   
   describe "split image path" do
-    let(:split_image_path) { helper.split_image_path("/path/something.s-original.jpg") }
+    let(:split_image_path) { helper.split_image_path_from_extension("/path/something.s-original.jpg") }
     it "removes the -original" do
       split_image_path.first.should eq "/path/something.s"
     end
@@ -16,17 +16,17 @@ describe PictureTag::ViewHelpers, :type => :helper  do
   describe "building the source tag" do
     
     it "builds using a media query" do
-      helper.create_source('test', 'small', 'jpg', "(min-width: 100px)").
+      helper.build_source_tag('test', 'small', 'jpg', "(min-width: 100px)").
       should eq "<source media='(min-width: 100px)' srcset='/images/test-small.jpg 1x, /images/test-small@2x.jpg 2x' />"
     end
     
     it "builds without a media query" do
-      helper.create_source('/path/test', 'small', 'png').
+      helper.build_source_tag('/path/test', 'small', 'png').
       should eq "<source srcset='/path/test-small.png 1x, /path/test-small@2x.png 2x' />"
     end
     
     it "builds without an external path" do
-      helper.create_source('http://www.image/path/test', 'small', 'png',"(min-width: 100px)").
+      helper.build_source_tag('http://www.image/path/test', 'small', 'png',"(min-width: 100px)").
       should eq "<source media='(min-width: 100px)' srcset='http://www.image/path/test-small.png 1x, http://www.image/path/test-small@2x.png 2x' />"
     end
   end

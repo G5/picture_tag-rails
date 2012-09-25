@@ -46,3 +46,7 @@ To override the default media queries and names:
 ```erb
 <%= picture_tag(image_path, sizes: {itty_bitty: "(min-width: 10px)"}) %>
 ```
+
+## Todo
+
+- Implement Retina support
