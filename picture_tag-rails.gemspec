@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Bookis Smuin"]
   gem.email         = ["vegan.bookis@gmail.com"]
   gem.description   = %q{Rails View Helper picture_tag extension}
-  gem.summary       = %q{Allow a picture_tag method to generate dynamic markup for the proposed HTML5 picture element}
+  gem.summary       = %q{A Rails view helper extension to generate the proposed HTML5 picture tag markup.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
