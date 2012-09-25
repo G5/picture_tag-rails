@@ -36,6 +36,24 @@ produces
 </picture>
 ```
 
+## Paperclip
+
+Paperclip options for default media queries and sizes
+
+```ruby
+has_attached_file :image, {
+  styles: { 
+    tiny:   "480x", 
+    small:  "768x", 
+    medium: "1000x", 
+    large:  "1600x",
+    %s(tiny@2x)   => "960x", 
+    %s(small@2x)  => "1536x", 
+    %s(medium@2x) => "2000x", 
+    %s(large@2x)  => "3200x"
+  }
+```
+
 ## Options
 
 To exclude `<source>` elements with media queries above a max width:
@@ -50,4 +68,5 @@ To override the default media queries and names:
 
 ## Todo
 
+- Add optional paperclip integration functionality
 - Implement Retina support
