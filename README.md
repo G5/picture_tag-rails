@@ -38,7 +38,7 @@ produces
 
 ## Options
 
-To exclude <source> attributes above a max width:
+To exclude `<source>` attributes above a max width:
 ```erb
 <%= picture_tag(image_path, max_width: "600px") %>
 ```
