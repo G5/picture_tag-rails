@@ -8,7 +8,7 @@ from the W3C HTML Responsive Images Extension Proposal.
 
 ## Current Version
 
-0.0.1
+0.0.2
 
 
 ## Requirements
