@@ -10,4 +10,4 @@ end
 Config::Application.initialize!
 
 require 'rspec/rails'
-require 'picture_tag'
+require 'picture_tag-rails'
