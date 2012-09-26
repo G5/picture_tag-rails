@@ -40,10 +40,6 @@ gem install picture_tag-rails
 
 Add to some Ruby file in your Rails app.
 
-```ruby
-require 'picture_tag'
-```
-
 Use it in your views as you would the `image_tag()` helper.
 
 ```erb
