@@ -87,7 +87,9 @@ describe PictureTag::ViewHelpers, :type => :helper  do
     end
 
     it  "prefixes the size to the filename" do
-      helper.picture_tag('/images/cat.jpg', :prefix_size => true).should match /\/images\/small-cat.jpg/i
+      html = helper.picture_tag('/images/cat.jpg', :prefix_size => true)
+      puts html.inspect
+      html.should match /src=\"\/images\/tiny-cat.jpg/i
     end
 
     it "overwrites the default sizes if sizes given" do
