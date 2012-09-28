@@ -85,7 +85,7 @@ To override the default media queries and names:
 To prefix (opposed to suffix) the filename with size ('/images/small-kitty.jpg'):
 
 ```erb
-<%= picture_tag(image_path, prefix_sizes: true}) %>
+<%= picture_tag(image_path, prefix_size: true}) %>
 ```
 
 All `image_tag` options are valid for `picture_tag`.
