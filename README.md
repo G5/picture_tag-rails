@@ -82,6 +82,12 @@ To override the default media queries and names:
 <%= picture_tag(image_path, sizes: { itty_bitty: "(min-width: 10px)" }) %>
 ```
 
+To prefix (opposed to suffix) the filename with size ('/images/small-kitty.jpg'):
+
+```erb
+<%= picture_tag(image_path, prefix_sizes: true}) %>
+```
+
 All `image_tag` options are valid for `picture_tag`.
 See [image_tag Docs](http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html)
 
