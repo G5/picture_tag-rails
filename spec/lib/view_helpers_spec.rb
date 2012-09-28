@@ -16,29 +16,29 @@ describe PictureTag::ViewHelpers, :type => :helper  do
   describe "building the source tag" do
     
     it "builds using a media query" do
-      helper.build_source_tag('test', 'small', 'jpg', "(min-width: 100px)").
+      helper.build_source_tag('test.jpg', 'small', "(min-width: 100px)").
       should eq "<source media='(min-width: 100px)' srcset='/images/test-small.jpg 1x, /images/test-small@2x.jpg 2x' />"
     end
     
     it "builds without a media query" do
-      helper.build_source_tag('/path/test', 'small', 'png').
+      helper.build_source_tag('/path/test.png', 'small').
       should eq "<source srcset='/path/test-small.png 1x, /path/test-small@2x.png 2x' />"
     end
     
     it "builds without an external path" do
-      helper.build_source_tag('http://www.image/path/test', 'small', 'png',"(min-width: 100px)").
+      helper.build_source_tag('http://www.image/path/test.png', 'small',"(min-width: 100px)").
       should eq "<source media='(min-width: 100px)' srcset='http://www.image/path/test-small.png 1x, http://www.image/path/test-small@2x.png 2x' />"
     end
   end
   
   describe "default source and image" do
     it "builds source and img" do
-      helper.add_default_source_and_image('test', 'small', 'jpg', {}).
+      helper.add_default_source_and_image('test.jpg', 'small', {}).
       should eq "<source srcset='/images/test-small.jpg 1x, /images/test-small@2x.jpg 2x' /><img alt=\"Test\" src=\"/images/test-small.jpg\" />"
     end
     
     it "adds a class to the img tag" do
-      helper.add_default_source_and_image('test', 'small', 'jpg', {:class => "span2"}).
+      helper.add_default_source_and_image('test.jpg', 'small', {:class => "span2"}).
       should eq "<source srcset='/images/test-small.jpg 1x, /images/test-small@2x.jpg 2x' /><img alt=\"Test\" class=\"span2\" src=\"/images/test-small.jpg\" />"
     end
     
@@ -86,6 +86,10 @@ describe PictureTag::ViewHelpers, :type => :helper  do
       helper.picture_tag('/images/cat.jpg', :alt => "Kitty!").should eq html.gsub("Cat", "Kitty!") 
     end
 
+    it  "prefixes the size to the filename" do
+      helper.picture_tag('/images/cat.jpg', :prefix_size => true).should match /\/images\/small-cat.jpg/i
+    end
+
     it "overwrites the default sizes if sizes given" do
       h = "<picture>" +
       "<source media='(min-width: 1px)' srcset='/images/cat-hidden.jpg 1x, /images/cat-hidden@2x.jpg 2x' />" +
@@ -99,6 +103,29 @@ describe PictureTag::ViewHelpers, :type => :helper  do
     
     it "excludes source tags with a media query above the given amount" do
       helper.picture_tag("cat.jpg", :max_width => "500").split('source').should have(4).things
+    end
+    
+    describe "prefixes the size to the filename" do
+      it "without x" do
+        helper.build_file_path('/path/test.png', 'small', true).
+        should eq "/path/small-test.png"
+      end
+
+      it "with @2x" do
+        helper.build_file_path('/path/test.png', 'small@2x', true).
+        should eq "/path/small@2x-test.png"
+      end
+
+      it "without a slash" do
+        helper.build_file_path('path/test.png', 'small@2x', true).
+        should eq "path/small@2x-test.png"
+      end
+      
+      it "without a path" do
+        helper.build_file_path('test.png', 'small@2x', true).
+        should eq "small@2x-test.png"
+      end
+      
     end
   end
   
