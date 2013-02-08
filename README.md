@@ -1,5 +1,7 @@
 # Picture-Tag Rails
 
+[![Code Climate](https://codeclimate.com/github/G5/picture_tag-rails.png)](https://codeclimate.com/github/G5/picture_tag-rails)
+
 A Rails view helper extension to generate HTML5 `<picture>` tag markup
 from the W3C HTML Responsive Images Extension Proposal.
   
