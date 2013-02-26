@@ -1,5 +1,5 @@
 # Picture-Tag Rails
-
+[![Build Status](https://travis-ci.org/G5/picture_tag-rails.png?branch=master)](https://travis-ci.org/G5/picture_tag-rails)
 [![Code Climate](https://codeclimate.com/github/G5/picture_tag-rails.png)](https://codeclimate.com/github/G5/picture_tag-rails)
 
 A Rails view helper extension to generate HTML5 `<picture>` tag markup
