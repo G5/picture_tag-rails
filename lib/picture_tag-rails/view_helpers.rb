@@ -14,12 +14,15 @@ module PictureTag
       html
     end
 
-    def build_file_path(image_path, size, prefix_size=false)
+    def build_file_path(image_path, size, prefix_size=false, options={})
       filename, extension = split_image_path_from_extension(image_path)
       if prefix_size
         # Splits on last '/' before the first whitespace.
         path, file = filename.split(/\/(?=[^\/]+(?: |$))| /)
-        file ? "#{path}/#{size}-#{file}.#{extension}" : "#{size}-#{path}.#{extension}"
+        file ? "#{path}/#{size}#{'-' if size}#{file}.#{extension}" : "#{size}#{'-' if size}#{path}.#{extension}"
+      elsif options[:default_image]
+        #binding.pry
+        image_path
       else
         "#{filename}-#{size}.#{extension}"
       end
@@ -38,11 +41,14 @@ module PictureTag
       if options[:default_image]
         prefix_size = false
         image_path = options[:default_image]
+        size = nil
       elsif options[:default_size]
+        options[:prefix_size] = false
+        prefix_size = false
         size = options[:default_size]
       end
       
-      img_src = build_file_path(image_path, size, prefix_size)
+      img_src = build_file_path(image_path, size, prefix_size, options)
       html    = build_source_tag(image_path, size, nil, options)
       html    << image_tag(img_src, normalize_options(options, image_path))
       html
@@ -50,8 +56,10 @@ module PictureTag
 
     def normalize_options(options, image_path)
       options[:alt] ||= alt_tag(image_path)
-      options[:prefix_size] = nil
-      options[:max_width]   = nil
+      options[:prefix_size]   = nil
+      options[:max_width]     = nil
+      options[:default_size]  = nil
+      options[:default_image] = nil
       options
     end
 
