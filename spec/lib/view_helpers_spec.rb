@@ -29,12 +29,28 @@ describe PictureTag::ViewHelpers, :type => :helper  do
       helper.build_source_tag('http://www.image/path/test.png', 'small',"(min-width: 100px)").
       should eq "<source media='(min-width: 100px)' srcset='http://www.image/path/test-small.png 1x, http://www.image/path/test-small@2x.png 2x' />"
     end
+    
+    it "builds given a default image" do
+      helper.build_source_tag('/images/test.png', 'small', nil, {:default_image => '/images/test.png'}).
+      should eq "<source srcset='/images/test.png' />"
+    end
+    
   end
   
   describe "default source and image" do
     it "builds source and img" do
       helper.add_default_source_and_image('test.jpg', 'small', {}).
       should eq "<source srcset='/images/test-small.jpg 1x, /images/test-small@2x.jpg 2x' /><img alt=\"Test\" src=\"/images/test-small.jpg\" />"
+    end
+    
+    it "lets you specify a default image size" do
+      helper.add_default_source_and_image('test.jpg', 'any_size', {:default_size => :large}).
+      should eq "<source srcset='/images/test-large.jpg 1x, /images/test-large@2x.jpg 2x' /><img alt=\"Test\" src=\"/images/test-large.jpg\" />"
+    end
+    
+    it "lets you specify a default image path" do
+      helper.add_default_source_and_image('test.jpg', 'large', {:default_image => '/images/test.png'}).
+      should eq "<source srcset='/images/test.png' /><img alt=\"Test\" src=\"/images/test.png\" />"
     end
     
     it "adds a class to the img tag" do
