@@ -34,7 +34,15 @@ module PictureTag
     end
 
     def add_default_source_and_image(image_path, size, options)
-      img_src = build_file_path(image_path, size, options[:prefix_size])
+      prefix_size = options[:prefix_size]
+      if options[:default_image]
+        prefix_size = false
+        image_path = options[:default_image]
+      elsif options[:default_size]
+        size = options[:default_size]
+      end
+      
+      img_src = build_file_path(image_path, size, prefix_size)
       html    = build_source_tag(image_path, size, nil, options)
       html    << image_tag(img_src, normalize_options(options, image_path))
       html
