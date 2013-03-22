@@ -19,7 +19,7 @@ module PictureTag
       if prefix_size
         # Splits on last '/' before the first whitespace.
         path, file = filename.split(/\/(?=[^\/]+(?: |$))| /)
-        file ? "#{path}/#{size}#{'-' if size}#{file}.#{extension}" : "#{size}#{'-' if size}#{path}.#{extension}"
+        file ? "#{path}/#{size}-#{file}.#{extension}" : "#{size}-#{path}.#{extension}"
       elsif options[:default_image]
         #binding.pry
         image_path
@@ -33,6 +33,7 @@ module PictureTag
       file2x = build_file_path(image_path, "#{size}@2x", options[:prefix_size])
       srcset = image_path(file)    + " 1x, "
       srcset << image_path(file2x) + " 2x"
+      srcset = options[:default_image] if options[:default_image]
       "<source #{"media='#{media_query}' " if media_query}srcset='#{srcset}' />"
     end
 
@@ -42,6 +43,7 @@ module PictureTag
         prefix_size = false
         image_path = options[:default_image]
         size = nil
+        options[:default_src] = true
       elsif options[:default_size]
         options[:prefix_size] = false
         prefix_size = false
@@ -60,6 +62,7 @@ module PictureTag
       options[:max_width]     = nil
       options[:default_size]  = nil
       options[:default_image] = nil
+      options[:default_src]   = nil
       options
     end
 
