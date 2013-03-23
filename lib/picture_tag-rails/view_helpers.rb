@@ -45,7 +45,6 @@ module PictureTag
         size = nil
       elsif options[:default_size]
         options[:prefix_size] = false
-        prefix_size = false
         size = options[:default_size]
       end
       
