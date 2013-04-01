@@ -10,7 +10,7 @@ from the W3C HTML Responsive Images Extension Proposal.
 
 ## Current Version
 
-0.0.4
+0.0.5
 
 
 ## Requirements
@@ -90,6 +90,13 @@ To prefix (opposed to suffix) the filename with size ('/images/small-kitty.jpg')
 <%= picture_tag(image_path, prefix_size: true}) %>
 ```
 
+To preload a custom default placeholder image:
+
+```erb
+<%= picture_tag(image_path, default_image: '/images/placeholder.png'}) %>
+```
+
+
 All `image_tag` options are valid for `picture_tag`.
 See [image_tag Docs](http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html)
 
@@ -125,6 +132,8 @@ has_attached_file :image, {
 
 * Bookis Smuin / [@bookis](https://github.com/bookis)
 * Chad Crissman / [@crissmancd](https://github.com/crissmancd)
+* John Lucia / [@johnlucia](https://github.com/johnlucia)
+* Levi Brown / [@levibrown](https://github.com/levibrown)
 
 
 ## Contributions
