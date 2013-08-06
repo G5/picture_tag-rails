@@ -60,7 +60,7 @@ The vanilla usage with default sizes and media queries:
 produces:
 
 ```html
-<picture>
+<picture alt="Kitty cat!">
   <source media="(min-width: 1600px)" srcset="cat-large.jpg 1x, cat-large@2x.jpg 2x" />
   <source media="(min-width: 1000px)" srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x" />
   <source media="(min-width: 768px)"  srcset="cat-small.jpg 1x, cat-small@2x.jpg 2x" />
@@ -131,6 +131,7 @@ has_attached_file :image, {
 
 - Add optional paperclip integration functionality
 - Implement Retina support
+- Add Travis ci Rails 4 support
 
 
 ## Authors
