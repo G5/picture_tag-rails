@@ -122,7 +122,7 @@ has_attached_file :image, {
     %s(small@2x)  => "960x",
     %s(medium@2x) => "1536x",
     %s(large@2x)  => "2000x",
-    %s(large@2x)  => "3200x"
+    %s(huge@2x)  => "3200x"
   }
 ```
 
