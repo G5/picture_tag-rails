@@ -3,8 +3,10 @@ module PictureTag
 
     def picture_tag(image_path, options={})
       sizes = determine_sizes(options)
+      alt_text = "alt='#{options[:alt] ||= alt_tag(image_path)}'"
+      picture_class = options[:picture_class].blank? ? "" : " class='#{options[:picture_class]}'"
 
-      html = "<picture>"
+      html = "<picture #{alt_text + picture_class}>"
       sizes.each do |size, media_query|
         html << build_source_tag(image_path, size, media_query, options)
       end
@@ -60,6 +62,7 @@ module PictureTag
       options[:max_width]     = nil
       options[:default_size]  = nil
       options[:default_image] = nil
+      options[:picture_class] = nil
       options
     end
 

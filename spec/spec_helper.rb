@@ -2,12 +2,12 @@ require 'rubygems'
 
 require "action_controller/railtie"
 
-module Config
+module RbConfig
   class Application < ::Rails::Application
-    config.active_support.deprecation = :stderr 
+    config.active_support.deprecation = :stderr
   end
 end
-Config::Application.initialize!
+RbConfig::Application.initialize!
 
 require 'rspec/rails'
 require 'picture_tag-rails'

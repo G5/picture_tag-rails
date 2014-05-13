@@ -4,7 +4,7 @@
 
 A Rails view helper extension to generate HTML5 `<picture>` tag markup
 from the W3C HTML Responsive Images Extension Proposal.
-  
+
 [w3.org/community/respimg](http://www.w3.org/community/respimg)
 
 
@@ -60,7 +60,7 @@ The vanilla usage with default sizes and media queries:
 produces:
 
 ```html
-<picture>
+<picture alt="Kitty cat!">
   <source media="(min-width: 1600px)" srcset="cat-large.jpg 1x, cat-large@2x.jpg 2x" />
   <source media="(min-width: 1000px)" srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x" />
   <source media="(min-width: 768px)"  srcset="cat-small.jpg 1x, cat-small@2x.jpg 2x" />
@@ -96,6 +96,11 @@ To preload a custom default placeholder image:
 <%= picture_tag(image_path, default_image: '/images/placeholder.png'}) %>
 ```
 
+To add a class to the picture tag:
+
+```erb
+<%= picture_tag(image_path, picture_class: "some_class"}) %>
+```
 
 All `image_tag` options are valid for `picture_tag`.
 See [image_tag Docs](http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html)
@@ -107,17 +112,17 @@ Paperclip options for default media queries and sizes.
 
 ```ruby
 has_attached_file :image, {
-  styles: { 
-    tiny:   "320x", 
-    small:  "480x", 
-    medium: "768x", 
-    large:  "1000x", 
+  styles: {
+    tiny:   "320x",
+    small:  "480x",
+    medium: "768x",
+    large:  "1000x",
     huge:   "1600x",
-    %s(tiny@2x)   => "640x", 
-    %s(small@2x)  => "960x", 
-    %s(medium@2x) => "1536x", 
-    %s(large@2x)  => "2000x", 
-    %s(large@2x)  => "3200x"
+    %s(tiny@2x)   => "640x",
+    %s(small@2x)  => "960x",
+    %s(medium@2x) => "1536x",
+    %s(large@2x)  => "2000x",
+    %s(huge@2x)  => "3200x"
   }
 ```
 
@@ -126,6 +131,7 @@ has_attached_file :image, {
 
 - Add optional paperclip integration functionality
 - Implement Retina support
+- Add Travis ci Rails 4 support
 
 
 ## Authors
