@@ -11,7 +11,7 @@ module PictureTag
       html << add_default_source_and_image(image_path, sizes.last.first, options)
       html << "</picture>"
 
-      html
+      raw html
     end
 
     def build_file_path(image_path, size, prefix_size=false, options={})
@@ -36,7 +36,7 @@ module PictureTag
       srcset = options[:default_image] if options[:default_image].eql?(image_path)
       "<source #{"media='#{media_query}' " if media_query}srcset='#{srcset}' />"
     end
-    
+
     def add_default_source_and_image(image_path, size, options)
       prefix_size = options[:prefix_size]
       if options[:default_image]
@@ -47,7 +47,7 @@ module PictureTag
         options[:prefix_size] = false
         size = options[:default_size]
       end
-      
+
       img_src = build_file_path(image_path, size, prefix_size, options)
       html    = build_source_tag(image_path, size, nil, options)
       html    << image_tag(img_src, normalize_options(options, image_path))
