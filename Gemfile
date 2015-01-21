@@ -8,5 +8,5 @@ gem 'tzinfo'
 group :test, :development do
   gem 'guard-rspec'
   gem 'rb-fsevent', '~> 0.9.1'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '<3.0.0'
 end

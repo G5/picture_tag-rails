@@ -15,7 +15,7 @@ from the W3C HTML Responsive Images Extension Proposal.
 
 ## Requirements
 
-* [Ruby on Rails](http://rubyonrails.org) > 3.0
+* [Ruby on Rails](http://rubyonrails.org) > 3.0 and < 4.0
 
 
 
@@ -134,6 +134,8 @@ end
 
 - Add optional paperclip integration functionality
 - Implement Retina support
+- Intergrate with Travis.ci
+- Implement Rails 4 support
 
 
 ## Authors
