@@ -7,9 +7,13 @@ module PictureTag
   class << self
     attr_accessor :configuration
 
+    def ininitlaize
+      self.class.configure
+    end
+
       # Pattern inspired by http://robots.thoughtbot.com/mygem-configure-block/
     def configure
-      self.configuration = Configuration.new
+      self.configuration ||= Configuration.new
       yield(configuration)
     end
   end
