@@ -31,10 +31,25 @@ describe PictureTag::ViewHelpers, :type => :helper  do
       should eq "<source srcset='/path/test-small.png 1x, /path/test-small@2x.png 2x' />"
     end
 
-    it "builts it when display_high_def is set to failse" do
-      helper.stub(:display_high_def).and_return(false)
-      helper.build_source_tag('/path/test.png', 'small').
-      should eq "<source srcset='/path/test-small.png 1x' />"
+    context "when display_high_def is set to false" do
+
+      before do
+        PictureTag.configure do |config|
+          config.display_high_def = false
+        end
+      end
+
+      after do
+        PictureTag.configure do |config|
+          config.display_high_def = true
+        end
+      end
+
+
+      it "builds the source tag" do
+        helper.build_source_tag('/path/test.png', 'small').
+        should eq "<source srcset='/path/test-small.png 1x' />"
+      end
     end
 
     it "builds without an external path" do

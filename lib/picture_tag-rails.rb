@@ -5,10 +5,6 @@ require_relative "./picture_tag-rails/configuration"
 
 module PictureTag
 
-  # def ininitlaize
-  #   self.class.configure{}
-  # end
-
   class << self
     attr_accessor :configuration
 
