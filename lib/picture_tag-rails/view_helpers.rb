@@ -1,4 +1,14 @@
 module PictureTag
+
+  def configure
+    self.configuration = Configuration.new
+    yield(configuration)
+  end
+
+  def display_high_def
+    true unless PictureTag.configuration.display_high_def
+  end
+
   module ViewHelpers
 
     def picture_tag(image_path, options={})
@@ -30,9 +40,9 @@ module PictureTag
 
     def build_source_tag(image_path, size, media_query=nil, options={})
       file   = build_file_path(image_path, size, options[:prefix_size])
-      #file2x = build_file_path(image_path, "#{size}@2x", options[:prefix_size])
+      file2x = build_file_path(image_path, "#{size}@2x", options[:prefix_size]) if display_high_def
       srcset = image_path(file) + " 1x"
-      #srcset << image_path(file2x) + " 2x"
+      srcset << image_path(file2x) + ", 2x" if display_high_def
       srcset = options[:default_image] if options[:default_image].eql?(image_path)
       "<source #{"media='#{media_query}' " if media_query}srcset='#{srcset}' />"
     end
