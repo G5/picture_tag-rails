@@ -4,7 +4,7 @@
 
 A Rails view helper extension to generate HTML5 `<picture>` tag markup
 from the W3C HTML Responsive Images Extension Proposal.
-  
+
 [w3.org/community/respimg](http://www.w3.org/community/respimg)
 
 
@@ -107,18 +107,26 @@ Paperclip options for default media queries and sizes.
 
 ```ruby
 has_attached_file :image, {
-  styles: { 
-    tiny:   "320x", 
-    small:  "480x", 
-    medium: "768x", 
-    large:  "1000x", 
+  styles: {
+    tiny:   "320x",
+    small:  "480x",
+    medium: "768x",
+    large:  "1000x",
     huge:   "1600x",
-    %s(tiny@2x)   => "640x", 
-    %s(small@2x)  => "960x", 
-    %s(medium@2x) => "1536x", 
-    %s(large@2x)  => "2000x", 
+    %s(tiny@2x)   => "640x",
+    %s(small@2x)  => "960x",
+    %s(medium@2x) => "1536x",
+    %s(large@2x)  => "2000x",
     %s(large@2x)  => "3200x"
   }
+```
+
+## Configuration
+- Retina support can be disabled by adding a configure block to your config
+```ruby
+PictureTag.configure do |config|
+  config.display_high_def = false
+end
 ```
 
 
@@ -134,6 +142,7 @@ has_attached_file :image, {
 * Chad Crissman / [@crissmancd](https://github.com/crissmancd)
 * John Lucia / [@johnlucia](https://github.com/johnlucia)
 * Levi Brown / [@levibrown](https://github.com/levibrown)
+* Colton Fent / [@colto](https://github.com/colto)
 
 
 ## Contributions
